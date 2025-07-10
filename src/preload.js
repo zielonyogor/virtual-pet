@@ -1,9 +1,12 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('api', {
+    // quit app
     quitApp: () => ipcRenderer.send('quit-app'),
+
+    // git pull
     executeGitPull: () => {
         console.log('pulling...');
-        ipcRenderer.send('git-pull', 'test-project');
+        ipcRenderer.send('git-pull');
     }
 });
