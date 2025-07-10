@@ -1,0 +1,14 @@
+body {
+margin: 0;
+overflow: hidden;
+background: transparent;
+}
+
+#character {
+width: 64px;
+height: 64px;
+background-image: url('./src/assets/character/walk.png');
+background-size: calc(64px * 12) 64px;;
+background-repeat: no-repeat;
+image-rendering: pixelated;
+}

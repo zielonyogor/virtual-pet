@@ -1,0 +1,7 @@
+{
+    "appId": "com.zielonyogor.pet",
+    "win": {
+        "target": "portable",
+        "icon": "./src/assets/icon.ico"
+    }
+}
