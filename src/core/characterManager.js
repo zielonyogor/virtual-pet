@@ -17,7 +17,6 @@
         
         constructor() {
             this.#characterElement = document.getElementById('character');
-            this.#characterElement.addEventListener('click', (event) => this.#handleClick(event));
             
             this.#animationManager = new AnimationManager(this.#characterElement);
             

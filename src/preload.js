@@ -8,5 +8,9 @@ contextBridge.exposeInMainWorld('api', {
     executeGitPull: () => {
         console.log('pulling...');
         ipcRenderer.send('git-pull');
+    },
+
+    openVSCode: () => {
+        ipcRenderer.send('vscode-open');
     }
 });

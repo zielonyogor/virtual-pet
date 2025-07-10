@@ -6,6 +6,10 @@ let configDiv = null;
 function setup()
 {
     btnDiv = document.getElementById('task-div');
+    Array.from(btnDiv.getElementsByTagName('button')).forEach(btn => {
+        btn.addEventListener('click', toggleTaskBtn);
+    });
+
     configDiv = document.getElementById('config-div');
 
     const taskBtn = document.getElementById('task-btn');
@@ -13,6 +17,9 @@ function setup()
     
     const gitBtn = document.getElementById('git-btn');
     gitBtn.addEventListener('click', window.api.executeGitPull);
+    
+    const vscBtn = document.getElementById('vsc-btn');
+    vscBtn.addEventListener('click', window.api.openVSCode);
     
     const configBtn = document.getElementById('config-btn');
     configBtn.addEventListener('click', showConfigWindow);
@@ -22,6 +29,7 @@ function setup()
 }
 
 function toggleTaskBtn() {
+    console.log("clicking");
     const isVisible = btnDiv.classList.toggle('hidden');
 
     const event = new CustomEvent('taskbar-toggle', {

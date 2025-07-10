@@ -52,3 +52,12 @@ ipcMain.on('git-pull', () => {
         })
     });
 });
+
+ipcMain.on('vscode-open', () => {
+    exec('code', (error, stdout, stderr) => {
+        if(error) {
+            console.error(`Failed to open VSCode: ${error.message}`);
+            return;
+        }
+    });
+});
