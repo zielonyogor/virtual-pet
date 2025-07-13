@@ -21,11 +21,11 @@ export default class AnimationManager {
     animateWalk() {
         clearInterval(this.#animationInterval);
 
-        this.#animationInterval = setInterval(() => {
-            const xOffset = -this.#currentFrame * SPRITE_WIDTH;
-            this.#characterElement.style.backgroundPosition = `${xOffset}px 0`;
+        // this.#animationInterval = setInterval(() => {
+        //     const xOffset = -this.#currentFrame * SPRITE_WIDTH;
+        //     this.#characterElement.style.backgroundPosition = `${xOffset}px 0`;
 
-            this.#currentFrame = (this.#currentFrame + 1) % 12;
-        }, 50);
+        //     this.#currentFrame = (this.#currentFrame + 1) % 12;
+        // }, 50);
     }
 }

@@ -5,10 +5,10 @@ body {
 }
 
 #character {
-    width: 64px;
-    height: 64px;
-    background-image: url('./character/walk.png');
-    background-size: calc(64px * 12) 64px;;
+    width: 116px;
+    height: 160px;
+    background-image: url('./character/idle-export.gif');
+    /* background-size: calc(64px * 12) 64px;; */
     background-repeat: no-repeat;
     image-rendering: pixelated;
 }
