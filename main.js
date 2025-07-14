@@ -26,7 +26,7 @@ app.on('ready' ,() => {
     
     if(!app.isPackaged)
         win.webContents.openDevTools({ mode: 'detach' });
-    
+
     win.setSkipTaskbar(true);
 
     win.loadFile('index.html');
