@@ -2,12 +2,27 @@ body {
     margin: 0;
     overflow: hidden;
     background: transparent;
+    display: flex;
+}
+
+.task-table {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(133, 167, 180);
+}
+
+.task-table button {
+    font-size: 14px;
+    margin: 4px;
+    border: none;
+    border-radius: 0px;
+    background-color: aliceblue;
 }
 
 #character {
     width: 116px;
     height: 160px;
-    background-image: url('./character/idle-export.gif');
+    background-image: url('./character/idle.gif');
     /* background-size: calc(64px * 12) 64px;; */
     background-repeat: no-repeat;
     image-rendering: pixelated;
