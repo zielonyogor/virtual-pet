@@ -5,7 +5,11 @@ contextBridge.exposeInMainWorld('api', {
     quitApp: () => ipcRenderer.send('quit-app'),
 
     // open task window
-    toggleTaskWindow: (bounds) => ipcRenderer.send('task-window-toggle', bounds),
+    toggleTaskWindow: (event, bounds) => ipcRenderer.send('task-window-toggle', event, bounds),
+
+    // open config window
+    toggleConfigWindow: () => ipcRenderer.send('config-window-toggle'),
+    openGitDialog: () => ipcRenderer.send('open-git-dialog'),
 
     getWindowBounds: () => ipcRenderer.sendSync('get-window-bounds'),
 

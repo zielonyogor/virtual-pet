@@ -1,12 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
-function createMainWindow() {
-    win = new BrowserWindow({
-        width: 200,
-        height: 200,
-        transparent: true,
-        frame: false,
+function createConfigWindow(bounds) {
+    let configWin = new BrowserWindow({
+        width: 400,
+        height: 600,
         alwaysOnTop: true,
         hasShadow: false,
         resizable: false,
@@ -15,18 +13,16 @@ function createMainWindow() {
             contextIsolation: true,
             nodeIntegration: false,
         },
-        x: 0,
-        y: 0,
     });
     
     if(!app.isPackaged)
-        win.webContents.openDevTools({ mode: 'detach' });
+        configWin.webContents.openDevTools({ mode: 'detach' });
+    
+    configWin.setSkipTaskbar(true);
 
-    win.setSkipTaskbar(true);
+    configWin.loadFile('tasks.html');
 
-    win.loadFile('index.html');
+    return configWin;
+}
 
-    return win;
-};
-
-module.exports = createMainWindow;
+module.exports = createConfigWindow;

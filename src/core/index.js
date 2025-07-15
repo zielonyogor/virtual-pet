@@ -1,4 +1,4 @@
-import CharacterManager from "./core/characterManager.js";
+import CharacterManager from "../character/characterManager.js";
 
 const characterManager = new CharacterManager();
 

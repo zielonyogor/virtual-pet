@@ -4,10 +4,7 @@ let btnDiv = null;
 let configDiv = null;
 
 function setup()
-{
-
-    configDiv = document.getElementById('config-div');
-    
+{    
     const gitBtn = document.getElementById('git-btn');
     gitBtn.addEventListener('click', window.api.executeGitPull);
     
@@ -22,5 +19,5 @@ function setup()
 }
 
 function showConfigWindow() {
-
+    window.api.toggleConfigWindow();
 }

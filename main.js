@@ -1,41 +1,23 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
-const path = require('path');
 const { getRepos } = require('./electron/storage.js');
 const { exec } = require('child_process');
+const createMainWindow = require('./electron/windows/mainWindow.js');
+const createTaskWindow = require('./electron/windows/taskWindow.js');
+const createConfigWindow = require('./electron/windows/configWindow.js');
 
 let win;
 let taskWin = null; // tasks
+let configWin = null; // config
 
-app.on('ready' ,() => {
-    win = new BrowserWindow({
-        width: 200,
-        height: 200,
-        transparent: true,
-        frame: false,
-        alwaysOnTop: true,
-        hasShadow: false,
-        resizable: false,
-        webPreferences: {
-            preload: path.join(__dirname, 'src/preload.js'),
-            contextIsolation: true,
-            nodeIntegration: false,
-        },
-        x: 0,
-        y: 0,
-    });
-    
-    if(!app.isPackaged)
-        win.webContents.openDevTools({ mode: 'detach' });
-
-    win.setSkipTaskbar(true);
-
-    win.loadFile('index.html');
+app.on('ready', () => {
+    win = createMainWindow();
 });
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
+// IPC calls
 ipcMain.on('quit-app', () => {
     if (process.platform !== 'darwin') app.quit();
 });
@@ -71,6 +53,7 @@ ipcMain.on('get-window-bounds', (event) => {
 });
 
 ipcMain.on('task-window-toggle', (event, bounds) => {
+    console.log(bounds);
     if (taskWin) {
         if (!taskWin.isDestroyed()) {
             taskWin.close();
@@ -79,30 +62,14 @@ ipcMain.on('task-window-toggle', (event, bounds) => {
         return;
     }
 
-    taskWin = new BrowserWindow({
-        width: 180,
-        height: 200,
-        transparent: true,
-        frame: false,
-        alwaysOnTop: true,
-        hasShadow: false,
-        resizable: false,
-        webPreferences: {
-            preload: path.join(__dirname, 'src/preload.js'),
-            contextIsolation: true,
-            nodeIntegration: false,
-        },
-    });
+    taskWin = createTaskWindow(bounds);
+});
 
-    console.log(bounds);
-    const x = bounds.x + bounds.width;
-    const y = bounds.y;
-    taskWin.setBounds({ x, y, width: 180, height: 220 });
-    
-    if(!app.isPackaged)
-        taskWin.webContents.openDevTools({ mode: 'detach' });
-    
-    taskWin.setSkipTaskbar(true);
+ipcMain.on('config-window-toggle', () => {
+    configWin = createConfigWindow();
+});
 
-    taskWin.loadFile('tasks.html');
+ipcMain.on('open-git-dialog', () => {
+    const { dialog } = require('electron');
+    //console.log(dialog.showOpenDialog({ properties: ['openFile', 'multiSelections'] }))
 });
