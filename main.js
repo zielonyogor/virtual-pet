@@ -1,5 +1,5 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
-const { getRepos, addRepo } = require('./electron/git.js');
+const { getRepos, addRepo, deleteRepo } = require('./electron/git.js');
 const { exec } = require('child_process');
 const createMainWindow = require('./electron/windows/mainWindow.js');
 const createTaskWindow = require('./electron/windows/taskWindow.js');
@@ -68,6 +68,15 @@ ipcMain.handle('open-git-dialog', async () => {
     return getRepos();
 });
 
+ipcMain.handle('git-get-repos', () => {
+    return getRepos();
+})
+
+ipcMain.handle('git-delete-repo', (event, repoPath) => {
+    deleteRepo(repoPath);
+    return getRepos();
+})
+
 ipcMain.on('git-pull', () => {
     console.log(`got`);
 
@@ -83,7 +92,3 @@ ipcMain.on('git-pull', () => {
         })
     });
 });
-
-ipcMain.handle('git-get-repos', () => {
-    return getRepos();
-})

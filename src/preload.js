@@ -14,6 +14,7 @@ contextBridge.exposeInMainWorld('api', {
     openGitDialog: () => ipcRenderer.invoke('open-git-dialog'),
 
     getRepos: () => ipcRenderer.invoke('git-get-repos'),
+    deleteRepo: (repoPath) => ipcRenderer.invoke('git-delete-repo', repoPath),
 
     // git pull
     executeGitPull: () => {

@@ -21,6 +21,12 @@ function updateRepoList(repos) {
         <p class="repo-path">${repo}</p>
         <button class="repo-delete">X</button>
     `;
+    const deleteBtn = repoElem.getElementsByClassName("repo-delete")[0];
+    deleteBtn.addEventListener('click', async () => {
+        console.log('clicked');
+        const updatedRepos = await window.api.deleteRepo(repo);
+        updateRepoList(updatedRepos);
+    })
 
     listElem.appendChild(repoElem);
   });
