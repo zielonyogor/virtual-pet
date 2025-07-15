@@ -3,10 +3,8 @@ const path = require('path');
 
 function createConfigWindow(bounds) {
     let configWin = new BrowserWindow({
-        width: 400,
-        height: 600,
-        alwaysOnTop: true,
-        hasShadow: false,
+        width: 500,
+        height: 300,
         resizable: false,
         webPreferences: {
             preload: path.join(__dirname, '../../src/preload.js'),
@@ -17,10 +15,8 @@ function createConfigWindow(bounds) {
     
     if(!app.isPackaged)
         configWin.webContents.openDevTools({ mode: 'detach' });
-    
-    configWin.setSkipTaskbar(true);
 
-    configWin.loadFile('tasks.html');
+    configWin.loadFile('config.html');
 
     return configWin;
 }

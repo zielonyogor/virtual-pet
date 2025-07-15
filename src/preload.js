@@ -7,11 +7,13 @@ contextBridge.exposeInMainWorld('api', {
     // open task window
     toggleTaskWindow: (event, bounds) => ipcRenderer.send('task-window-toggle', event, bounds),
 
+    getWindowBounds: () => ipcRenderer.sendSync('get-window-bounds'),
+
     // open config window
     toggleConfigWindow: () => ipcRenderer.send('config-window-toggle'),
-    openGitDialog: () => ipcRenderer.send('open-git-dialog'),
+    openGitDialog: () => ipcRenderer.invoke('open-git-dialog'),
 
-    getWindowBounds: () => ipcRenderer.sendSync('get-window-bounds'),
+    getRepos: () => ipcRenderer.invoke('git-get-repos'),
 
     // git pull
     executeGitPull: () => {
