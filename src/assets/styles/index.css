@@ -3,11 +3,16 @@ body {
     display: flex;
 }
 
-
 #character {
     width: 116px;
     height: 160px;
     background-image: url('../character/idle.gif');
     background-repeat: no-repeat;
     image-rendering: pixelated;
+}
+
+.task-btn {
+    border: none;
+    border-radius: 0;
+    width: 60px;
 }

@@ -12,7 +12,10 @@ function setup()
     vscBtn.addEventListener('click', window.api.openVSCode);
     
     const timerBtn = document.getElementById('timer-btn');
-    timerBtn.addEventListener('click', window.api.openTimer);
+    timerBtn.addEventListener('click', () => {
+        window.api.openTimer();
+        //window.api.toggleTaskWindow();
+    });
     
     const configBtn = document.getElementById('config-btn');
     configBtn.addEventListener('click', showConfigWindow);

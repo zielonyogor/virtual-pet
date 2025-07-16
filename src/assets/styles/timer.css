@@ -1,3 +1,11 @@
+body {
+    -webkit-app-region: drag;
+}
+
+button {
+    -webkit-app-region: no-drag;
+}
+
 .timer-window {
     background-color: wheat;
 }
@@ -7,6 +15,8 @@
     height: 40px;
     border-radius: 50%;
     border: none;
-    background-color: blueviolet;
+    background-color: rgb(61, 51, 70);
+    color: white;
+    font-size: 32px;
     display: inline-block;
 }

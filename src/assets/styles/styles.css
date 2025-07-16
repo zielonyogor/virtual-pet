@@ -21,27 +21,6 @@ button {
     width: 100%;
 }
 
-.task-btn {
-    border: none;
-    border-radius: 0;
-    width: 60px;
-}
-
-.task-table {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(133, 167, 180);
-}
-
-.task-table button {
-    font-size: 14px;
-    margin: 4px;
-    border: none;
-    border-radius: 0px;
-    background-color: aliceblue;
-}
-
-
 .hidden {
     display: none;
 }
