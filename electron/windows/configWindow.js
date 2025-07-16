@@ -16,7 +16,7 @@ function createConfigWindow(bounds) {
     if(!app.isPackaged)
         configWin.webContents.openDevTools({ mode: 'detach' });
 
-    configWin.loadFile('config.html');
+    configWin.loadFile('./src/config.html');
 
     return configWin;
 }

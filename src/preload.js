@@ -4,6 +4,8 @@ contextBridge.exposeInMainWorld('api', {
     // quit app
     quitApp: () => ipcRenderer.send('quit-app'),
 
+    closeWindow: () => ipcRenderer.send('close-window'),
+
     // open task window
     toggleTaskWindow: (event, bounds) => ipcRenderer.send('task-window-toggle', event, bounds),
 
@@ -24,5 +26,7 @@ contextBridge.exposeInMainWorld('api', {
 
     openVSCode: () => {
         ipcRenderer.send('vscode-open');
-    }
+    },
+
+    openTimer: () => ipcRenderer.send('open-timer')
 });

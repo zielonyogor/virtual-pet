@@ -1,11 +1,11 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
-function createMainWindow() {
-    win = new BrowserWindow({
+function createTimerWindow() {
+
+    let timerWin = new BrowserWindow({
         width: 200,
         height: 200,
-        transparent: true,
         frame: false,
         alwaysOnTop: true,
         hasShadow: false,
@@ -15,18 +15,16 @@ function createMainWindow() {
             contextIsolation: true,
             nodeIntegration: false,
         },
-        x: 0,
-        y: 0,
     });
     
     if(!app.isPackaged)
-        win.webContents.openDevTools({ mode: 'detach' });
+        timerWin.webContents.openDevTools({ mode: 'detach' });
+    
+    timerWin.setSkipTaskbar(true);
 
-    win.setSkipTaskbar(true);
+    timerWin.loadFile('./src/timer.html');
 
-    win.loadFile('./src/index.html');
+    return timerWin;
+}
 
-    return win;
-};
-
-module.exports = createMainWindow;
+module.exports = createTimerWindow;

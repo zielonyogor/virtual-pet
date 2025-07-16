@@ -1,0 +1,12 @@
+.timer-window {
+    background-color: wheat;
+}
+
+.start-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: blueviolet;
+    display: inline-block;
+}

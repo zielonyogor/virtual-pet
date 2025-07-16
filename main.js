@@ -4,6 +4,7 @@ const { exec } = require('child_process');
 const createMainWindow = require('./electron/windows/mainWindow.js');
 const createTaskWindow = require('./electron/windows/taskWindow.js');
 const createConfigWindow = require('./electron/windows/configWindow.js');
+const createTimerWindow = require('./electron/windows/timerWindow.js');
 
 let win;
 let taskWin = null; // tasks
@@ -20,6 +21,11 @@ app.on('window-all-closed', () => {
 // IPC calls
 ipcMain.on('quit-app', () => {
     if (process.platform !== 'darwin') app.quit();
+});
+
+ipcMain.on('close-window', (event) => {
+    const window = BrowserWindow.fromWebContents(event.sender);
+    if(window) window.close();
 });
 
 ipcMain.on('vscode-open', () => {
@@ -91,4 +97,8 @@ ipcMain.on('git-pull', () => {
             console.log(`Git pulled in ${repo}:\n${stdout}`);
         })
     });
+});
+
+ipcMain.on('open-timer', () => {
+    createTimerWindow();
 });

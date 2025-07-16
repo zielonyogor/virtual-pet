@@ -6,7 +6,7 @@ const path = require('path');
 function createTaskWindow(bounds) {
 
     let taskWin = new BrowserWindow({
-        width: 180,
+        width: 120,
         height: 200,
         transparent: true,
         frame: false,
@@ -30,7 +30,7 @@ function createTaskWindow(bounds) {
     
     taskWin.setSkipTaskbar(true);
 
-    taskWin.loadFile('tasks.html');
+    taskWin.loadFile('./src/tasks.html');
 
     return taskWin;
 }

@@ -1,0 +1,13 @@
+body {
+    background: transparent;
+    display: flex;
+}
+
+
+#character {
+    width: 116px;
+    height: 160px;
+    background-image: url('../character/idle.gif');
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+}
