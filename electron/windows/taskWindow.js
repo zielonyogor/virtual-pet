@@ -20,7 +20,6 @@ function createTaskWindow(bounds) {
         },
     });
 
-    console.log(bounds);
     const x = bounds.x + bounds.width;
     const y = bounds.y;
     taskWin.setBounds({ x, y, width: 180, height: 220 });

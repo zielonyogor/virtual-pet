@@ -11,6 +11,9 @@ function setup()
     const vscBtn = document.getElementById('vsc-btn');
     vscBtn.addEventListener('click', window.api.openVSCode);
     
+    const fbBtn = document.getElementById('fb-btn');
+    fbBtn.addEventListener('click', window.api.openFacebook);
+    
     const timerBtn = document.getElementById('timer-btn');
     timerBtn.addEventListener('click', () => {
         window.api.openTimer();

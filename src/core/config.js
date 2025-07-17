@@ -18,12 +18,13 @@ function updateRepoList(repos) {
     repoElem.innerHTML = 
     `
         <p class="repo-main-title">${repo.split("\\").pop()}</p>
-        <p class="repo-path">${repo}</p>
-        <button class="repo-delete">X</button>
+        <div class="repo-path-container">
+          <p class="repo-path">${repo}</p>
+          <button class="repo-delete">X</button>
+        </div>
     `;
     const deleteBtn = repoElem.getElementsByClassName("repo-delete")[0];
     deleteBtn.addEventListener('click', async () => {
-        console.log('clicked');
         const updatedRepos = await window.api.deleteRepo(repo);
         updateRepoList(updatedRepos);
     })

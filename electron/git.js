@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const { exec } = require('child_process');
 
-const dataPath = path.join(__dirname, "..", 'data');
-const reposJSONPath = path.join(dataPath, 'repos.json');
+const reposJSONPath = path.join(process.cwd(), 'data', 'repos.json');
 
 function getRepos() {
     if(!fs.existsSync(reposJSONPath)) return [];
@@ -13,6 +13,20 @@ function getRepos() {
         console.error(`Failed to load JSON with repos: ${error}`);
         return [];   
     }    
+}
+
+function pullRepos() {
+    const repos = getRepos();
+    console.log(repos);
+    repos.forEach(repo => {
+        exec('git pull origin', { cwd: repo }, (error, stdout, stderr) => {
+            if(error) {
+                console.error(`Git pull failed in ${repo}: ${error.message}`);
+                return;
+            }
+            console.log(`Git pulled in ${repo}:\n${stdout}`);
+        })
+    });
 }
 
 function addRepo(repoPath) {
@@ -54,6 +68,7 @@ function deleteRepo(repoPath) {
 }
 
 module.exports = {
+    pullRepos,
     getRepos,
     addRepo,
     deleteRepo

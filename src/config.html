@@ -9,11 +9,21 @@
   <body>    
     <!-- Config window -->
     <div class="config-window">
-      <p>git repositories</p>
-      <div id="git-list">
-
-      </div>
-      <button id="add-git-btn">add git repository</button>
+      <section class="config-section">
+        <p class="section-title">git repositories</p>
+        <div id="git-list">
+        </div>
+        <button id="add-git-btn">add git repository</button>
+      </section>
+      <section class="config-section">
+        <p class="section-title">times</p>
+        <div class="times-list">
+          <input type="number" name="time 1" id="time-input-1" class="time-input" min="0" max="60">
+          <input type="number" name="time 2" id="time-input-2" class="time-input" min="0" max="60">
+          <input type="number" name="time 3" id="time-input-3" class="time-input" min="0" max="60">
+        </div>
+        <button id="save-time-btn">save new times</button>
+      </section>
     </div>
 
     <script type="module" src="./core/config.js"></script>

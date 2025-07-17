@@ -1,10 +1,15 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
-const { getRepos, addRepo, deleteRepo } = require('./electron/git.js');
 const { exec } = require('child_process');
+const git = require('./electron/git.js');
+const web = require('./electron/web.js');
 const createMainWindow = require('./electron/windows/mainWindow.js');
 const createTaskWindow = require('./electron/windows/taskWindow.js');
 const createConfigWindow = require('./electron/windows/configWindow.js');
 const createTimerWindow = require('./electron/windows/timerWindow.js');
+
+require('electron-reload')(__dirname, {
+  electron: require(`${__dirname}/node_modules/electron`)
+});
 
 let win;
 let taskWin = null; // tasks
@@ -67,38 +72,30 @@ ipcMain.handle('open-git-dialog', async () => {
     });
     
     if (!result.canceled) {
-        result.filePaths.forEach(addRepo);
-        return getRepos();
+        result.filePaths.forEach(git.addRepo);
+        return git.getRepos();
     }
     
-    return getRepos();
+    return git.getRepos();
 });
 
 ipcMain.handle('git-get-repos', () => {
-    return getRepos();
+    return git.getRepos();
 })
 
 ipcMain.handle('git-delete-repo', (event, repoPath) => {
-    deleteRepo(repoPath);
-    return getRepos();
+    git.deleteRepo(repoPath);
+    return git.getRepos();
 })
 
 ipcMain.on('git-pull', () => {
-    console.log(`got`);
-
-    const repos = getRepos();
-    console.log(repos);
-    repos.forEach(repo => {
-        exec('git pull origin', { cwd: repo }, (error, stdout, stderr) => {
-            if(error) {
-                console.error(`Git pull failed in ${repo}: ${error.message}`);
-                return;
-            }
-            console.log(`Git pulled in ${repo}:\n${stdout}`);
-        })
-    });
+    git.pullRepos();
 });
 
-ipcMain.on('open-timer', () => {
+ipcMain.on('timer-open', () => {
     createTimerWindow();
 });
+
+ipcMain.on('facebook-open', () => {
+    web.openFacebook();
+})

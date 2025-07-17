@@ -1,6 +1,7 @@
 body {
     background: transparent;
     display: flex;
+    overflow: hidden;
 }
 
 #character {

@@ -20,7 +20,6 @@ contextBridge.exposeInMainWorld('api', {
 
     // git pull
     executeGitPull: () => {
-        console.log('pulling...');
         ipcRenderer.send('git-pull');
     },
 
@@ -28,5 +27,9 @@ contextBridge.exposeInMainWorld('api', {
         ipcRenderer.send('vscode-open');
     },
 
-    openTimer: () => ipcRenderer.send('open-timer')
+    openFacebook: () => {
+        ipcRenderer.send('facebook-open');
+    },
+
+    openTimer: () => ipcRenderer.send('timer-open')
 });
