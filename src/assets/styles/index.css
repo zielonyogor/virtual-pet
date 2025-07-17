@@ -15,5 +15,9 @@ body {
 .task-btn {
     border: none;
     border-radius: 0;
-    width: 60px;
+    width: 54px;
+    height: 36px;
+    background-image: url('../ui/task-btn.png');
+    background-repeat: no-repeat;
+    background-color: transparent;
 }
