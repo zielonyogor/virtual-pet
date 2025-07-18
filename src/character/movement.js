@@ -8,7 +8,7 @@ const xMax = X_MAX - window.outerWidth;
 export class MovementManager {
   #characterManager;
 
-  moveSpeed = 1; // Walk speed
+  moveSpeed = 2; // Walk speed
 
   x = 50;
   y = yMax;

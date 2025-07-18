@@ -5,10 +5,12 @@ body {
 }
 
 #character {
-    width: 116px;
+    width: 140px;
     height: 160px;
     background-image: url('../character/idle.gif');
     background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: bottom;
     image-rendering: pixelated;
 }
 

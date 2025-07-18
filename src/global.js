@@ -1,4 +1,5 @@
 const FRAMES_PER_SECOND = 20;
+const FRAME_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
 
 const SPRITE_WIDTH = 58;
 const SPRITE_HEIGHT = 80;
@@ -6,4 +7,4 @@ const SPRITE_HEIGHT = 80;
 const Y_MAX = screen.availHeight;
 const X_MAX = screen.availWidth;
 
-export { X_MAX, Y_MAX, SPRITE_WIDTH, SPRITE_HEIGHT, FRAMES_PER_SECOND };
+export { X_MAX, Y_MAX, SPRITE_WIDTH, SPRITE_HEIGHT, FRAMES_PER_SECOND, FRAME_INTERVAL_MS };

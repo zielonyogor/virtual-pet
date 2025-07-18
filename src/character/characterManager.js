@@ -1,10 +1,10 @@
 import { MovementManager } from "./movement.js";
 import AnimationManager from "./animationManager.js";
-import { FRAMES_PER_SECOND } from "../global.js";
+import { FRAME_INTERVAL_MS } from "../global.js";
 import { direction, Direction } from "./direction.js";
 
-const STATE_DURATION_MIN = 100;
-const STATE_DURATION_MAX = 400;
+const STATE_DURATION_MIN = 2000;
+const STATE_DURATION_MAX = 6000;
 
 export const Character = Object.freeze({
     IDLE: Symbol("idle"),
@@ -19,14 +19,14 @@ export default class CharacterManager {
     #animationManager;
     #movementManager;
     
-    #framesSinceStateChange = 0;
+    #timeSinceStateChange = 0;
     #stateDuration = 100;
     
     constructor() {
         this.#characterElement = document.getElementById('character');
         
         this.#animationManager = new AnimationManager(this.#characterElement);
-        this.#framesSinceStateChange = 0;
+        this.#timeSinceStateChange = 0;
 
         this.#movementManager = new MovementManager(this);
         
@@ -38,7 +38,7 @@ export default class CharacterManager {
         this.handleWalk  = this.handleWalk.bind(this);
         this.handleLock  = this.handleLock.bind(this);
         
-        this.#currentState = setInterval(this.handleIdle, FRAMES_PER_SECOND);
+        this.#currentState = setInterval(this.handleIdle, FRAME_INTERVAL_MS);
     }
     
     #handleTaskWindowLock(isLocked) {
@@ -52,12 +52,12 @@ export default class CharacterManager {
     
     changeState(newState) {
         clearInterval(this.#currentState);
-        this.#framesSinceStateChange = 0;
+        this.#timeSinceStateChange = 0;
         this.#stateDuration = Math.floor(Math.random() * (STATE_DURATION_MAX - STATE_DURATION_MIN + 1) + STATE_DURATION_MIN); // random between min-max
         switch (newState) {
             case Character.IDLE:
                 console.log("changing to idle");
-                this.#currentState = setInterval(this.handleIdle, FRAMES_PER_SECOND);
+                this.#currentState = setInterval(this.handleIdle, FRAME_INTERVAL_MS);
                 break;
                 
             case Character.WALK:
@@ -66,11 +66,11 @@ export default class CharacterManager {
                 else
                     direction.value = Math.random() < 0.5 ? Direction.LEFT : Direction.RIGHT;
                 this.#animationManager.animateWalk();
-                this.#currentState = setInterval(this.handleWalk, FRAMES_PER_SECOND);
+                this.#currentState = setInterval(this.handleWalk, FRAME_INTERVAL_MS);
                 break;
                 
             case Character.LOCKED:
-                this.#currentState = setInterval(this.handleLock, FRAMES_PER_SECOND);
+                this.#currentState = setInterval(this.handleLock, FRAME_INTERVAL_MS);
             
             default:
                 break;
@@ -78,17 +78,17 @@ export default class CharacterManager {
     }
     
     handleIdle() {
-        this.#framesSinceStateChange++;
-        if(this.#framesSinceStateChange > this.#stateDuration) {
+        this.#timeSinceStateChange += FRAME_INTERVAL_MS;
+        if(this.#timeSinceStateChange > this.#stateDuration) {
             this.changeState(Character.WALK);
         }
     }
     
     handleWalk() {
-        this.#framesSinceStateChange++;
+        this.#timeSinceStateChange += FRAME_INTERVAL_MS;
         this.#movementManager.move();
 
-        if(this.#framesSinceStateChange > this.#stateDuration) {
+        if(this.#timeSinceStateChange > this.#stateDuration) {
             this.changeState(Character.IDLE);
         }
     }
