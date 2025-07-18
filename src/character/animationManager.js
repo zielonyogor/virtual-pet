@@ -1,11 +1,14 @@
-import { SPRITE_WIDTH } from "../global.js";
+import { onDirectionChanged } from "./direction.js";
+
+// animation to class maping
+const Animation = Object.freeze({
+    IDLE: 'anim-idle',
+    WALK: 'anim-walk',
+})
 
 export default class AnimationManager {
-    #currentFrame;
+    #currentAnimation;
     #characterElement;
-    #currentDirection;
-
-    #animationInterval = null;
 
     /**
      * 
@@ -13,19 +16,28 @@ export default class AnimationManager {
      */
     constructor(characterElement) {
         this.#characterElement = characterElement;
-        this.#currentDirection = 1;
+        this.#currentAnimation = Animation.IDLE;
 
-        this.#currentFrame = 0;
+        onDirectionChanged(this.onDirectionChange.bind(this));
+    }
+
+    changeAnimation(newAnimation) {
+        this.#characterElement.classList.remove(this.#currentAnimation);
+        this.#currentAnimation = newAnimation;
+        this.#characterElement.classList.add(this.#currentAnimation);
     }
 
     animateWalk() {
-        clearInterval(this.#animationInterval);
+        console.log('started walking anim...');
+        this.changeAnimation(Animation.WALK);
+    }
+    
+    animateIdle() {
+        this.changeAnimation(Animation.IDLE);
+    }
 
-        // this.#animationInterval = setInterval(() => {
-        //     const xOffset = -this.#currentFrame * SPRITE_WIDTH;
-        //     this.#characterElement.style.backgroundPosition = `${xOffset}px 0`;
-
-        //     this.#currentFrame = (this.#currentFrame + 1) % 12;
-        // }, 50);
+    onDirectionChange(event) {
+        const dir = event.detail.direction;
+        console.log(`Animator got: ${dir}`);
     }
 }

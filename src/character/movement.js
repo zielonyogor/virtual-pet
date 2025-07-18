@@ -1,25 +1,34 @@
 import { Y_MAX, X_MAX, SPRITE_WIDTH, SPRITE_HEIGHT } from "../global.js";
+import { Character } from "./characterManager.js";
+import { direction } from "./direction.js";
 
 const yMax = Y_MAX;
 const xMax = X_MAX - window.outerWidth;
 
-let dx = 1; // Walk speed
+export class MovementManager {
+  #characterManager;
 
-let x = 50;
-let y = yMax;
+  moveSpeed = 1; // Walk speed
 
+  x = 50;
+  y = yMax;
 
-export default function move() {
-  x += dx;
-
-  // Bounce off screen edges
-  if (x < 0 || x > xMax) {
-    dx *= -1;
+  constructor(characterManager) {
+    this.#characterManager = characterManager
   }
 
-  window.moveTo(x, y);
-}
+  move() {
+    this.x += this.moveSpeed * direction.value;
 
-export function getCharacterDirection() {
-  return dx > 1 ? 1 : -1;
+    // Bounce off screen edges
+    if (this.isOnEgde()) {
+      this.#characterManager.changeState(Character.IDLE);
+      return;
+    }
+    window.moveTo(this.x, this.y);
+  }
+
+  isOnEgde() {
+    return this.x < 0 || this.x > xMax;
+  }
 }
