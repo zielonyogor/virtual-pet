@@ -17,7 +17,19 @@ button {
 
 .titlebar {
     display: flex;
+    box-sizing: border-box;
     width: 100%;
+    justify-content: end;
+    padding: 4px;
+}
+
+.titlebar > button {
+    border: none;
+    font-size: 16px;
+}
+
+.titlebar > button:hover {
+    cursor: pointer;
 }
 
 .hidden {
