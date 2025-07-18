@@ -1,16 +1,17 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, screen } = require('electron');
 const path = require('path');
 
-//let taskWin = null; // tasks
+const TASK_WIDTH = 100;
+const TASK_HEIGHT = 180;
 
 function createTaskWindow(bounds) {
 
     let taskWin = new BrowserWindow({
-        width: 120,
-        height: 200,
-        transparent: true,
+        width: TASK_WIDTH,
+        height: TASK_HEIGHT,
         frame: false,
         alwaysOnTop: true,
+        transparent: true, // has to stay because of windows?
         hasShadow: false,
         resizable: false,
         webPreferences: {
@@ -20,9 +21,8 @@ function createTaskWindow(bounds) {
         },
     });
 
-    const x = bounds.x + bounds.width;
-    const y = bounds.y;
-    taskWin.setBounds({ x, y, width: 180, height: 220 });
+    const pos = calculateBounds(bounds);
+    taskWin.setBounds({ x: pos.x, y: pos.y, width: TASK_WIDTH, height: TASK_HEIGHT });
     
     if(!app.isPackaged)
         taskWin.webContents.openDevTools({ mode: 'detach' });
@@ -32,6 +32,21 @@ function createTaskWindow(bounds) {
     taskWin.loadFile('./src/tasks.html');
 
     return taskWin;
+}
+
+function calculateBounds(bounds) {
+    const display = screen.getDisplayMatching(bounds);
+
+    let x = bounds.x + bounds.width;
+    let y = bounds.y;
+    
+    if(x + TASK_WIDTH >= display.workArea.width) x = bounds.x - TASK_WIDTH; // fix X pos
+    if(y + TASK_HEIGHT >= display.workArea.height) y = display.workArea.height - TASK_HEIGHT; // fix Y pos
+    
+    return {
+        x,
+        y,
+    }
 }
 
 module.exports = createTaskWindow;

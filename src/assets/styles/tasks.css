@@ -1,14 +1,27 @@
+body {    
+    height: 100vh;
+}
+
 .task-table {
+    height: 100%;
     display: flex;
+    box-sizing: border-box;
+    padding: 4px;
     flex-direction: column;
+    justify-content: space-between;
     background-color: rgb(133, 167, 180);
     overflow: hidden;
 }
 
 .task-table button {
-    font-size: 14px;
-    margin: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 4px 6px;
     border: none;
     border-radius: 0px;
     background-color: aliceblue;
+}
+
+.task-table button:hover {
+    cursor: pointer;
 }

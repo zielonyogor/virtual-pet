@@ -23,3 +23,8 @@ body {
     background-repeat: no-repeat;
     background-color: transparent;
 }
+
+.task-btn:hover {
+    cursor: pointer;
+    border: none;
+}
