@@ -19,10 +19,11 @@ export default class CharacterManager {
         this.#characterElement = document.getElementById('character');
         
         this.#animationManager = new AnimationManager(this.#characterElement);
-        
         this.#framesSinceStateChange = 0;
         
-        document.addEventListener('taskbar-toggle', (e) => this.#handleClick(e.detail.locked));
+        window.api.onTaskWindowLock((_, data) => {
+            this.#handleTaskWindowLock(data.locked);
+        });
 
         this.handleIdle  = this.handleIdle.bind(this);
         this.handleWalk  = this.handleWalk.bind(this);
@@ -31,8 +32,7 @@ export default class CharacterManager {
         this.#currentState = setInterval(this.handleIdle, FRAMES_PER_SECOND);
     }
     
-    #handleClick(isLocked) {
-        console.log("got: " + isLocked);
+    #handleTaskWindowLock(isLocked) {
         if(isLocked) {
                 this.changeState(Character.LOCKED);
         }

@@ -48,7 +48,9 @@ ipcMain.on('get-window-bounds', (event) => {
 });
 
 ipcMain.on('task-window-toggle', (event, bounds) => {
-    console.log(bounds);
+    const locked = !taskWin;
+    win.webContents.send('task-window-lock', { locked });
+
     if (taskWin) {
         if (!taskWin.isDestroyed()) {
             taskWin.close();

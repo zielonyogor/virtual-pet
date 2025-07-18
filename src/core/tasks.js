@@ -6,18 +6,27 @@ let configDiv = null;
 function setup()
 {    
     const gitBtn = document.getElementById('git-btn');
-    gitBtn.addEventListener('click', window.api.executeGitPull);
+    gitBtn.addEventListener('click', () => {
+        window.api.executeGitPull();
+        window.api.toggleTaskWindow();
+    });
     
     const vscBtn = document.getElementById('vsc-btn');
-    vscBtn.addEventListener('click', window.api.openVSCode);
+    vscBtn.addEventListener('click', () => {
+        window.api.openVSCode();
+        window.api.toggleTaskWindow();
+    });
     
     const fbBtn = document.getElementById('fb-btn');
-    fbBtn.addEventListener('click', window.api.openFacebook);
+    fbBtn.addEventListener('click', () => {
+        window.api.openFacebook();
+        window.api.toggleTaskWindow();
+    });
     
     const timerBtn = document.getElementById('timer-btn');
     timerBtn.addEventListener('click', () => {
         window.api.openTimer();
-        //window.api.toggleTaskWindow();
+        window.api.toggleTaskWindow();
     });
     
     const configBtn = document.getElementById('config-btn');

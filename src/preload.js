@@ -1,6 +1,9 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('api', {
+    // character lock
+    onTaskWindowLock: (callback) => ipcRenderer.on('task-window-lock', callback),
+
     // quit app
     quitApp: () => ipcRenderer.send('quit-app'),
 
