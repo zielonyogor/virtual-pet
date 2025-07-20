@@ -39,5 +39,6 @@ export default class AnimationManager {
     onDirectionChange(event) {
         const dir = event.detail.direction;
         console.log(`Animator got: ${dir}`);
+        this.#characterElement.style.transform = `scaleX(${dir})`;
     }
 }

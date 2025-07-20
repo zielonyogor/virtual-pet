@@ -57,19 +57,21 @@ export default class CharacterManager {
         switch (newState) {
             case Character.IDLE:
                 console.log("changing to idle");
+                this.#animationManager.animateIdle();
                 this.#currentState = setInterval(this.handleIdle, FRAME_INTERVAL_MS);
                 break;
                 
-            case Character.WALK:
-                if(this.#movementManager.isOnEgde())
-                    direction.value = direction.value * -1;
-                else
+                case Character.WALK:
+                    if(this.#movementManager.isOnEgde())
+                        direction.value = direction.value * -1;
+                    else
                     direction.value = Math.random() < 0.5 ? Direction.LEFT : Direction.RIGHT;
                 this.#animationManager.animateWalk();
                 this.#currentState = setInterval(this.handleWalk, FRAME_INTERVAL_MS);
                 break;
                 
-            case Character.LOCKED:
+                case Character.LOCKED:
+                this.#animationManager.animateIdle();
                 this.#currentState = setInterval(this.handleLock, FRAME_INTERVAL_MS);
             
             default:
