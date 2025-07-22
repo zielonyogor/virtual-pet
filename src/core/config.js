@@ -33,4 +33,8 @@ function updateRepoList(repos) {
   });
 }
 
+function updateTimes(times) {
+  
+}
+
 document.addEventListener('DOMContentLoaded', setup);

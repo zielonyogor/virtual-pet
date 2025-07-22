@@ -15,7 +15,14 @@ function getTimes() {
 }
 
 function setTimes(newTimes) {
+    if(newTimes.length < 3) return;
+    if(!fs.existsSync(timesJSONPath)) return;
 
+    try {
+        fs.writeFileSync(timesJSONPath, JSON.stringify(newTimes));
+    } catch (error) {
+        console.error(`Failed to save times: ${error}`);
+    }
 }
 
 module.exports = {

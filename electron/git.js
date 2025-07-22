@@ -31,7 +31,7 @@ function pullRepos() {
 
 function addRepo(repoPath) {
     if(!fs.existsSync(repoPath)) return;
-    if(!fs.existsSync(reposJSONPath)) return [];
+    if(!fs.existsSync(reposJSONPath)) return;
 
     let repos = [];
 

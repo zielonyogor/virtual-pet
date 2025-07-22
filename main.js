@@ -1,15 +1,16 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const { exec } = require('child_process');
 const git = require('./electron/git.js');
+const time = require('./electron/timeConfig.js');
 const web = require('./electron/web.js');
 const createMainWindow = require('./electron/windows/mainWindow.js');
 const createTaskWindow = require('./electron/windows/taskWindow.js');
 const createConfigWindow = require('./electron/windows/configWindow.js');
 const createTimerWindow = require('./electron/windows/timerWindow.js');
 
-require('electron-reload')(__dirname, {
-  electron: require(`${__dirname}/node_modules/electron`)
-});
+// require('electron-reload')(__dirname, {
+//   electron: require(`${__dirname}/node_modules/electron`)
+// });
 
 let win;
 let taskWin = null; // tasks
@@ -94,10 +95,18 @@ ipcMain.on('git-pull', () => {
     git.pullRepos();
 });
 
+ipcMain.on('facebook-open', () => {
+    web.openFacebook();
+})
+
+
+// timers
 ipcMain.on('timer-open', () => {
     createTimerWindow();
 });
 
-ipcMain.on('facebook-open', () => {
-    web.openFacebook();
-})
+ipcMain.handle('submit-new-times', async () => {
+    
+    
+    return time.getTimes;
+});
