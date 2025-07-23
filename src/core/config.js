@@ -6,6 +6,13 @@ async function setup() {
   });
   const initialRepos = await window.api.getRepos();
   updateRepoList(initialRepos);
+
+  const timesForm = document.getElementById('times-form');
+  const initialTimes = await window.api.getTimes();
+  updateTimes(initialTimes);
+  addNullInputPrevent(timesForm, initialTimes);
+
+  timesForm.addEventListener('submit', async (e) => submitTimes(e));
 }
 
 function updateRepoList(repos) {
@@ -34,7 +41,37 @@ function updateRepoList(repos) {
 }
 
 function updateTimes(times) {
-  
+  const timesForm = document.getElementById('times-form');
+  const timesInputs = [...timesForm.querySelectorAll('.time-input')];
+  for (let i = 0; i < timesInputs.length; i++) {
+    const element = timesInputs[i];
+    element.value = times[i];
+  }
+}
+
+function addNullInputPrevent(timesForm, savedValues) {
+  const timesInputs = timesForm.querySelectorAll('.time-input');
+  for (let i = 0; i < timesInputs.length; i++) {
+    const element = timesInputs[i];
+    const val = savedValues[i];
+    element.addEventListener('focusout', () => {
+      if(element.value === null || element.value == "") {
+        element.value = val;
+      }
+    });
+  }
+}
+
+async function submitTimes(e) {
+  const form = e.target;
+  e.preventDefault();
+
+  console.log(e);
+  const timesInputs = [...form.querySelectorAll('.time-input')];
+  const newTimes = timesInputs.map(item => parseInt(item.value, 10));
+  console.log(newTimes);
+  const resultTimes = await window.api.submitNewTimes(newTimes);
+  updateTimes(resultTimes);
 }
 
 document.addEventListener('DOMContentLoaded', setup);

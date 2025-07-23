@@ -15,7 +15,8 @@ function getTimes() {
 }
 
 function setTimes(newTimes) {
-    if(newTimes.length < 3) return;
+    console.log(newTimes);
+    if(newTimes === null || newTimes.length < 3) return;
     if(!fs.existsSync(timesJSONPath)) return;
 
     try {

@@ -105,8 +105,11 @@ ipcMain.on('timer-open', () => {
     createTimerWindow();
 });
 
-ipcMain.handle('submit-new-times', async () => {
-    
-    
-    return time.getTimes;
+ipcMain.handle('submit-new-times', (event, times) => {
+    time.setTimes(times);
+    return time.getTimes();
 });
+
+ipcMain.handle('time-get-times', () => {
+    return time.getTimes();
+})

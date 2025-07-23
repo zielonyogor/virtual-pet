@@ -34,5 +34,9 @@ contextBridge.exposeInMainWorld('api', {
         ipcRenderer.send('facebook-open');
     },
 
-    openTimer: () => ipcRenderer.send('timer-open')
+    openTimer: () => ipcRenderer.send('timer-open'),
+
+    getTimes: () => ipcRenderer.invoke('time-get-times'),
+
+    submitNewTimes: (newTimes) => ipcRenderer.invoke('submit-new-times', newTimes),
 });

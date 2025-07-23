@@ -18,12 +18,12 @@
       </section>
       <section class="config-section">
         <p class="section-title">times</p>
-        <div class="times-list">
-          <input type="number" name="time 1" id="time-input-1" class="time-input" min="0" max="60">
-          <input type="number" name="time 2" id="time-input-2" class="time-input" min="0" max="60">
-          <input type="number" name="time 3" id="time-input-3" class="time-input" min="0" max="60">
-        </div>
-        <button id="save-time-btn">save new times</button>
+        <form class="times-list" id="times-form" method="post">
+          <input type="number" name="time-1" class="time-input" min="0" max="60">
+          <input type="number" name="time-2" class="time-input" min="0" max="60">
+          <input type="number" name="time-3" class="time-input" min="0" max="60">
+          <button type="submit">save new times</button>
+        </form>
       </section>
     </div>
 
