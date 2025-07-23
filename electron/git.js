@@ -1,18 +1,11 @@
 const fs = require('fs');
-const path = require('path');
 const { exec } = require('child_process');
+const storage = require('./storage.js');
 
-const reposJSONPath = path.join(process.cwd(), 'data', 'repos.json');
+const reposJSON = 'repos.json';
 
 function getRepos() {
-    if(!fs.existsSync(reposJSONPath)) return [];
-    
-    try {
-        return JSON.parse(fs.readFileSync(reposJSONPath, 'utf8'));
-    } catch (error) {
-        console.error(`Failed to load JSON with repos: ${error}`);
-        return [];   
-    }    
+    return storage.readFile(reposJSON);
 }
 
 function pullRepos() {
@@ -31,39 +24,23 @@ function pullRepos() {
 
 function addRepo(repoPath) {
     if(!fs.existsSync(repoPath)) return;
-    if(!fs.existsSync(reposJSONPath)) return;
-
-    let repos = [];
-
-    try {
-        repos = JSON.parse(fs.readFileSync(reposJSONPath, 'utf-8'));   
-    } catch (error) {
-        console.error(`Failed to load JSON with repos: ${error}`);
-        repos = [];
-    }
+    
+    let repos = storage.readFile(reposJSON);
 
     if(!repos.includes(repoPath)) {
         repos.push(repoPath);
-        fs.writeFileSync(reposJSONPath, JSON.stringify(repos));
+        storage.writeFile(reposJSON, repos);
     }
 }
 
 function deleteRepo(repoPath) {
     if(!fs.existsSync(repoPath)) return;
-    if(!fs.existsSync(reposJSONPath)) return [];
-
-    let repos = [];
-
-    try {
-        repos = JSON.parse(fs.readFileSync(reposJSONPath, 'utf-8'));   
-    } catch (error) {
-        console.error(`Failed to load JSON with repos: ${error}`);
-        repos = [];
-    }
-
+    
+    let repos = storage.readFile(reposJSON);
+    
     if(repos.includes(repoPath)) {
         repos = repos.filter(r => r !== repoPath);
-        fs.writeFileSync(reposJSONPath, JSON.stringify(repos));
+        storage.writeFile(reposJSON, repos);
     }
 }
 

@@ -1,8 +1,10 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const { exec } = require('child_process');
 const git = require('./electron/git.js');
-const time = require('./electron/timeConfig.js');
+const time = require('./electron/time.js');
 const web = require('./electron/web.js');
+const storage = require('./electron/storage.js');
+
 const createMainWindow = require('./electron/windows/mainWindow.js');
 const createTaskWindow = require('./electron/windows/taskWindow.js');
 const createConfigWindow = require('./electron/windows/configWindow.js');
@@ -17,6 +19,7 @@ let taskWin = null; // tasks
 let configWin = null; // config
 
 app.on('ready', () => {
+    storage.init();    
     win = createMainWindow();
 });
 

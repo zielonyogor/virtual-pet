@@ -66,7 +66,6 @@ async function submitTimes(e) {
   const form = e.target;
   e.preventDefault();
 
-  console.log(e);
   const timesInputs = [...form.querySelectorAll('.time-input')];
   const newTimes = timesInputs.map(item => parseInt(item.value, 10));
   console.log(newTimes);
