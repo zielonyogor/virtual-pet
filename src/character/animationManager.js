@@ -4,6 +4,7 @@ import { onDirectionChanged } from "./direction.js";
 const Animation = Object.freeze({
     IDLE: 'anim-idle',
     WALK: 'anim-walk',
+    POKE: 'anim-poke',
 })
 
 export default class AnimationManager {
@@ -36,9 +37,13 @@ export default class AnimationManager {
         this.changeAnimation(Animation.IDLE);
     }
 
+    animatePoke() {
+        // change character state at animation change
+        return true; // done with this animation
+    }
+
     onDirectionChange(event) {
         const dir = event.detail.direction;
-        console.log(`Animator got: ${dir}`);
         this.#characterElement.style.transform = `scaleX(${dir})`;
     }
 }

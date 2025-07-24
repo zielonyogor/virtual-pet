@@ -9,7 +9,8 @@ const STATE_DURATION_MAX = 6000;
 export const Character = Object.freeze({
     IDLE: Symbol("idle"),
     WALK: Symbol("walk"),
-    LOCKED: Symbol("locked")
+    LOCKED: Symbol("locked"),
+    POKE: Symbol('poke'),
 });
 
 export default class CharacterManager {
@@ -24,6 +25,7 @@ export default class CharacterManager {
     
     constructor() {
         this.#characterElement = document.getElementById('character');
+        this.#characterElement.addEventListener('click', )
         
         this.#animationManager = new AnimationManager(this.#characterElement);
         this.#timeSinceStateChange = 0;
@@ -49,6 +51,11 @@ export default class CharacterManager {
             this.changeState(Character.IDLE);
         }
     }
+
+    #onCharacterClicked() {
+        if(this.#currentState === Character.LOCKED) return;
+        this.changeState(Character.POKE);
+    }
     
     changeState(newState) {
         clearInterval(this.#currentState);
@@ -65,7 +72,7 @@ export default class CharacterManager {
                     if(this.#movementManager.isOnEgde())
                         direction.value = direction.value * -1;
                     else
-                    direction.value = Math.random() < 0.5 ? Direction.LEFT : Direction.RIGHT;
+                        direction.value = this.#movementManager.chooseDirection();
                 this.#animationManager.animateWalk();
                 this.#currentState = setInterval(this.handleWalk, FRAME_INTERVAL_MS);
                 break;
@@ -73,6 +80,10 @@ export default class CharacterManager {
                 case Character.LOCKED:
                 this.#animationManager.animateIdle();
                 this.#currentState = setInterval(this.handleLock, FRAME_INTERVAL_MS);
+                
+                case Character.LOCKED:
+                this.#animationManager.animatePoke();
+                this.#currentState = setInterval(this.handlePoke, FRAME_INTERVAL_MS);
             
             default:
                 break;
@@ -96,5 +107,11 @@ export default class CharacterManager {
     }
 
     handleLock() {
+    }
+
+    handlePoke() {
+        if(this.#animationManager.animatePoke()) {
+            this.changeState(Character.IDLE);
+        }
     }
 }

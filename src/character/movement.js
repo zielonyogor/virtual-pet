@@ -31,4 +31,17 @@ export class MovementManager {
   isOnEgde() {
     return this.x < 0 || this.x > xMax;
   }
+
+  chooseDirection() {
+    const distLeft = this.x;
+    const distRight = xMax - this.x;
+
+    const forwardDistance = direction.value === 1 ? distRight : distLeft;
+    const normalizedForwardDistance = forwardDistance / (xMax / 2); // 0 = at edge, 1 = center
+
+    const keepDirectionChance = 0.3 + 0.7 * normalizedForwardDistance; // [0.3 - 1.0]
+
+    const shouldFlip = Math.random() > keepDirectionChance;
+    return shouldFlip ? direction.value * -1 : direction.value;
+  }
 }
