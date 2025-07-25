@@ -16,7 +16,6 @@ const createTimerWindow = require('./electron/windows/timerWindow.js');
 
 let win;
 let taskWin = null; // tasks
-let configWin = null; // config
 
 app.on('ready', () => {
     storage.init();    
@@ -37,13 +36,9 @@ ipcMain.on('close-window', (event) => {
     if(window) window.close();
 });
 
-ipcMain.on('vscode-open', () => {
-    exec('code', (error, stdout, stderr) => {
-        if(error) {
-            console.error(`Failed to open VSCode: ${error.message}`);
-            return;
-        }
-    });
+ipcMain.on('minimize-window', (event) => {
+    const window = BrowserWindow.fromWebContents(event.sender);
+    if(window) window.minimize();
 });
 
 ipcMain.on('get-window-bounds', (event) => {
@@ -68,7 +63,7 @@ ipcMain.on('task-window-toggle', (event, bounds) => {
 
 // Git and git config
 ipcMain.on('config-window-toggle', () => {
-    configWin = createConfigWindow();
+    createConfigWindow();
 });
 
 ipcMain.handle('open-git-dialog', async () => {
@@ -98,12 +93,22 @@ ipcMain.on('git-pull', () => {
     git.pullRepos();
 });
 
+// Other
+ipcMain.on('vscode-open', () => {
+    exec('code', (error, stdout, stderr) => {
+        if(error) {
+            console.error(`Failed to open VSCode: ${error.message}`);
+            return;
+        }
+    });
+});
+
 ipcMain.on('facebook-open', () => {
     web.openFacebook();
 })
 
 
-// timers
+// Timers
 ipcMain.on('timer-open', () => {
     createTimerWindow();
 });

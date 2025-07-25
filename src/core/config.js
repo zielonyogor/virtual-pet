@@ -1,8 +1,7 @@
+import { setupTitle } from "../ui/titleBar.js";
+
 async function setup() {
-  const closeBtn = document.getElementById('close-btn');
-    closeBtn.addEventListener('click', () => {
-        window.api.closeWindow();
-    });
+  setupTitle();
 
   const gitAddBtn = document.getElementById('add-git-btn');
   gitAddBtn.addEventListener('click', async () => {

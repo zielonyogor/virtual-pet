@@ -21,20 +21,21 @@ button {
     width: 100%;
     justify-content: end;
     padding: 4px;
-    -webkit-app-region: drag;
     border-bottom: 2px;
+    -webkit-app-region: drag;
 }
 
 .titlebar > .window-title {
     flex-grow: 1;
 }
 
-.titlebar > button {
+.titlebar button {
     border: none;
     font-size: 16px;
+    -webkit-app-region: no-drag;
 }
 
-.titlebar > button:hover {
+.titlebar button:hover {
     cursor: pointer;
 }
 

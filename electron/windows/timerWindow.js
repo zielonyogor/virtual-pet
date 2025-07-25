@@ -10,6 +10,7 @@ function createTimerWindow() {
         alwaysOnTop: true,
         hasShadow: false,
         resizable: false,
+        maximizable: false,
         webPreferences: {
             preload: path.join(__dirname, '../../src/preload.js'),
             contextIsolation: true,

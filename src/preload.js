@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld('api', {
     quitApp: () => ipcRenderer.send('quit-app'),
 
     closeWindow: () => ipcRenderer.send('close-window'),
+    minimizeWindow: () => ipcRenderer.send('minimize-window'),
 
     // open task window
     toggleTaskWindow: (event, bounds) => ipcRenderer.send('task-window-toggle', event, bounds),

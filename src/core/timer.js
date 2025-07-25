@@ -1,13 +1,12 @@
+const { setupTitle } = require("../ui/titleBar.js");
+
 let isRunning = false;
 let timerValueElem = null;
 let countdownInterval = null;
 let remainingSeconds = 0;
 
 function setup() {
-    const closeBtn = document.getElementById('close-btn');
-    closeBtn.addEventListener('click', () => {
-        window.api.closeWindow();
-    });
+    setupTitle();
 
     const timeBtns = Array.from(document.getElementsByClassName("time-btn"));
     timeBtns.forEach(timeBtn => {
