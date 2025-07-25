@@ -25,22 +25,23 @@ export default class CharacterManager {
     
     constructor() {
         this.#characterElement = document.getElementById('character');
-        this.#characterElement.addEventListener('click', )
         
         this.#animationManager = new AnimationManager(this.#characterElement);
         this.#timeSinceStateChange = 0;
-
+        
         this.#movementManager = new MovementManager(this);
         
         window.api.onTaskWindowLock((_, data) => {
             this.#handleTaskWindowLock(data.locked);
         });
-
+        
         this.handleIdle  = this.handleIdle.bind(this);
         this.handleWalk  = this.handleWalk.bind(this);
         this.handleLock  = this.handleLock.bind(this);
+        this.handlePoke  = this.handlePoke.bind(this);
         
         this.#currentState = setInterval(this.handleIdle, FRAME_INTERVAL_MS);
+        this.#characterElement.addEventListener('click', () => this.changeState(Character.POKE))
     }
     
     #handleTaskWindowLock(isLocked) {
@@ -68,22 +69,24 @@ export default class CharacterManager {
                 this.#currentState = setInterval(this.handleIdle, FRAME_INTERVAL_MS);
                 break;
                 
-                case Character.WALK:
-                    if(this.#movementManager.isOnEgde())
-                        direction.value = direction.value * -1;
-                    else
-                        direction.value = this.#movementManager.chooseDirection();
+            case Character.WALK:
+                if(this.#movementManager.isOnEgde())
+                    direction.value = direction.value * -1;
+                else
+                    direction.value = this.#movementManager.chooseDirection();
                 this.#animationManager.animateWalk();
                 this.#currentState = setInterval(this.handleWalk, FRAME_INTERVAL_MS);
                 break;
                 
-                case Character.LOCKED:
+            case Character.LOCKED:
                 this.#animationManager.animateIdle();
                 this.#currentState = setInterval(this.handleLock, FRAME_INTERVAL_MS);
+                break;
                 
-                case Character.LOCKED:
-                this.#animationManager.animatePoke();
+            case Character.POKE:
+                console.log("I got pokes >.<");
                 this.#currentState = setInterval(this.handlePoke, FRAME_INTERVAL_MS);
+                break;
             
             default:
                 break;

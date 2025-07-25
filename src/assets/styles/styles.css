@@ -21,6 +21,12 @@ button {
     width: 100%;
     justify-content: end;
     padding: 4px;
+    -webkit-app-region: drag;
+    border-bottom: 2px;
+}
+
+.titlebar > .window-title {
+    flex-grow: 1;
 }
 
 .titlebar > button {

@@ -6,6 +6,7 @@ function createConfigWindow(bounds) {
         width: 500,
         height: 500,
         resizable: false,
+        frame: false,
         webPreferences: {
             preload: path.join(__dirname, '../../src/preload.js'),
             contextIsolation: true,
@@ -17,7 +18,6 @@ function createConfigWindow(bounds) {
         configWin.webContents.openDevTools({ mode: 'detach' });
 
     configWin.loadFile('./src/config.html');
-    configWin.setTitle('settings');
 
     return configWin;
 }
