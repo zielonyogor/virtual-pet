@@ -1,4 +1,4 @@
-const { setupTitle } = require("../ui/titleBar.js");
+import { setupTitle } from "../ui/titleBar.js";
 
 let isRunning = false;
 let timerValueElem = null;
