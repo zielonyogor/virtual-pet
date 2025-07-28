@@ -4,7 +4,7 @@ const path = require('path');
 function createTimerWindow() {
 
     let timerWin = new BrowserWindow({
-        width: 200,
+        width: 220,
         height: 200,
         frame: false,
         transparent: true,

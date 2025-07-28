@@ -8,12 +8,28 @@ body {
 
     font-family: PixelFont;
     font-size: 16px;
+    color: #271e52;
+}
+
+main {
+    box-sizing: border-box;
+    background-image: url('../ui/window-background-fill.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    border-radius: 0px;
+    border: 10px solid transparent;
+    border-image: url('../ui/window-background.png') 10 stretch;
+
+    height: 100%;
 }
 
 button {
     font-family: PixelFont;
     font-size: 16px;
     user-select: none;
+    color: #271e52;
 }
 button:focus,button:active:focus  {
     outline: none !important;
@@ -27,9 +43,9 @@ button:focus,button:active:focus  {
     height: 32px;
     justify-content: end;
 
-    padding: 4px 12px 0px 8px;
+    padding: 4px 12px 0px 12px;
     
-    font-size: 16px;
+    font-size: 24px;
     box-sizing: border-box;
 
     image-rendering: pixelated;
