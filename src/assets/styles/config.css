@@ -2,6 +2,11 @@
     padding: 10px;
 }
 
+main {
+    background-color: #f9f4fd;
+    height: 100%;
+}
+
 section {
     padding-bottom: 10px; 
     border-bottom: 1px solid black;
@@ -47,10 +52,17 @@ section:first-of-type .section-title {
 .repo-delete {
     border: none;
     border-radius: 0;
-    width: 30px;
-    height: 30px;
-    background-color: brown;
-    color: white;
+    width: 26px;
+    height: 26px;
+    background-color: transparent;
+    background-image: url("../ui/buttons/delete-btn.png");
+    image-rendering: pixelated;
+    
+    transition: transform 0.8s ease-in-out;
+}
+.repo-delete:hover {
+    cursor: pointer;
+    transform: scale(1.2);
 }
 
 .times-list {
@@ -58,4 +70,10 @@ section:first-of-type .section-title {
 }
 .times-list input[type="number"] {
     width: 60px;
+}
+
+.titlebar {
+    background-image: url('../ui/windows/titlebar-config.png');
+    background-repeat: no-repeat;
+    background-color: transparent;
 }

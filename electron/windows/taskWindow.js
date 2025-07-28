@@ -1,8 +1,8 @@
 const { app, BrowserWindow, screen } = require('electron');
 const path = require('path');
 
-const TASK_WIDTH = 100;
-const TASK_HEIGHT = 180;
+const TASK_WIDTH = 220;
+const TASK_HEIGHT = 150;
 
 function createTaskWindow(bounds) {
 

@@ -10,9 +10,9 @@ const createTaskWindow = require('./electron/windows/taskWindow.js');
 const createConfigWindow = require('./electron/windows/configWindow.js');
 const createTimerWindow = require('./electron/windows/timerWindow.js');
 
-// require('electron-reload')(__dirname, {
-//   electron: require(`${__dirname}/node_modules/electron`)
-// });
+require('electron-reload')(__dirname, {
+  electron: require(`${__dirname}/node_modules/electron`)
+});
 
 let win;
 let taskWin = null; // tasks

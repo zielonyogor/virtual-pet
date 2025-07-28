@@ -4,22 +4,43 @@ body {
 
 .task-table {
     height: 100%;
-    display: flex;
     box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px 12px;
     padding: 4px;
-    flex-direction: column;
     justify-content: space-between;
-    background-color: rgb(133, 167, 180);
     overflow: hidden;
+
+    background-image: url('../ui/window-background-fill.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    border-radius: 0px;
+    border: 10px solid transparent;
+    border-image: url('../ui/window-background.png') 10 stretch;
+
+    image-rendering: pixelated;
 }
 
 .task-table button {
+    width: 100%;
+    height: 100%;
     font-size: 16px;
     box-sizing: border-box;
-    padding: 4px 6px;
-    border: none;
+
+    background-image: url('../ui/buttons/button-fill.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
     border-radius: 0px;
-    background-color: aliceblue;
+    border: 8px solid transparent;
+    border-image: url('../ui/buttons/button.png') 8 stretch;
+    
+    image-rendering: pixelated;
 }
 
 .task-table button:hover {

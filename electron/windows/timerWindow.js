@@ -7,6 +7,7 @@ function createTimerWindow() {
         width: 200,
         height: 200,
         frame: false,
+        transparent: true,
         alwaysOnTop: true,
         hasShadow: false,
         resizable: false,

@@ -13,6 +13,11 @@ button:hover {
     cursor: pointer;
 }
 
+main {
+    background-color: #f9f4fd;
+    height: 100%;
+}
+
 .timer-window {
     background-color: wheat;
     display: flex;
@@ -48,4 +53,10 @@ button:hover {
     padding: 6px;
     background-color: rgb(95, 76, 67);
     color: rgb(243, 239, 229);
+}
+
+.titlebar {
+    background-image: url('../ui/windows/titlebar-timer.png');
+    background-repeat: no-repeat;
+    background-color: transparent;
 }

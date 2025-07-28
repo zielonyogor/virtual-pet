@@ -31,7 +31,7 @@ function updateRepoList(repos) {
         <p class="repo-main-title">${repo.split("\\").pop()}</p>
         <div class="repo-path-container">
           <p class="repo-path">${repo}</p>
-          <button class="repo-delete">X</button>
+          <button class="repo-delete"></button>
         </div>
     `;
     const deleteBtn = repoElem.getElementsByClassName("repo-delete")[0];

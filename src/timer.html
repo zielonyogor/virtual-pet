@@ -10,20 +10,22 @@
   <body>    
     <!-- Bar -->
     <div class="titlebar">
-      <button id="close-btn">X</button>
+      <button id="close-btn"></button>
     </div>
     <!-- Timer window -->
-    <div class="timer-window">
-      <div class="time-btn-container">
-        <button class="time-btn" value="10">10:00</button>
-        <button class="time-btn" value="15">15:00</button>
-        <button class="time-btn" value="20">20:00</button>
+    <main>
+      <div class="timer-window">
+        <div class="time-btn-container">
+          <button class="time-btn" value="10">10:00</button>
+          <button class="time-btn" value="15">15:00</button>
+          <button class="time-btn" value="20">20:00</button>
+        </div>
+        <p id="time-value">1:00</p>
       </div>
-      <p id="time-value">1:00</p>
-    </div>
-    <div class="start-btn-container">
-      <button id="start-btn" class="start-btn">start</button>
-    </div>
+      <div class="start-btn-container">
+        <button id="start-btn" class="start-btn">start</button>
+      </div>
+    </main>
 
     <script type="module" src="./core/timer.js"></script>
   </body>
