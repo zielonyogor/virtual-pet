@@ -16,7 +16,7 @@
     </div>
     <!-- Config window -->
     <main class="config-window">
-      <section class="config-section">
+      <section class="config-section git-section">
         <p class="section-title">git repositories</p>
         <div id="git-list">
         </div>
@@ -25,10 +25,12 @@
       <section class="config-section">
         <p class="section-title">times</p>
         <form class="times-list" id="times-form" method="post">
-          <input type="number" name="time-1" class="time-input" min="0" max="60">
-          <input type="number" name="time-2" class="time-input" min="0" max="60">
-          <input type="number" name="time-3" class="time-input" min="0" max="60">
-          <button type="submit">save new times</button>
+          <div class="time-input-container">
+            <input type="number" name="time-1" class="time-input" min="0" max="60">
+            <input type="number" name="time-2" class="time-input" min="0" max="60">
+            <input type="number" name="time-3" class="time-input" min="0" max="60">
+          </div>
+          <button type="submit" class="save-time-btn">save new times</button>
         </form>
       </section>
     </main>

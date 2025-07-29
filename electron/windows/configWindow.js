@@ -9,6 +9,7 @@ function createConfigWindow(bounds) {
         frame: false,
         transparent: true,
         maximizable: false,
+        useContentSize: true,
         webPreferences: {
             preload: path.join(__dirname, '../../src/preload.js'),
             contextIsolation: true,

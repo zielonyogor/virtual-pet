@@ -25,13 +25,13 @@ main {
     height: 100%;
 }
 
-button {
+button, input {
     font-family: PixelFont;
     font-size: 16px;
     user-select: none;
     color: #271e52;
 }
-button:focus,button:active:focus  {
+button:focus,button:active:focus, input:focus, input:active:focus  {
     outline: none !important;
 }
 

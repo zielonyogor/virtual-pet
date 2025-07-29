@@ -1,12 +1,22 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .config-window {
-    padding: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 section {
-    padding-bottom: 10px; 
+    padding-bottom: 16px; 
     border-bottom: 2px solid #9b80ab;
 }
 section:last-child {
+    padding-bottom: 0px;
     border-bottom: none;
 }
 
@@ -18,7 +28,7 @@ section:first-of-type .section-title {
     margin-top: 0;
 }
 
-button {
+section button {
     background-color: #f9f4fd;
     
     border-radius: 8px;
@@ -27,9 +37,41 @@ button {
 
     image-rendering: pixelated;
 }
+section button:hover {
+    cursor: pointer;
+    background-color: #e9dfea;
+}
+section button:active {
+    background-color: #9b80ab;
+}
+
+#git-list {
+    background-color: #e9dfea;
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 200px;
+    padding-right: 4px;
+    border: 4px solid #e9dfea;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+#git-list::-webkit-scrollbar {
+    width: 8px;
+}
+#git-list::-webkit-scrollbar-thumb {
+    background-color: #9b80ab;
+    border-radius: 2px;
+}
 
 .repo-element {
     margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.repo-path-container {
+    flex-grow: 1;
 }
 
 .repo-main-title {
@@ -38,19 +80,12 @@ button {
     margin: 0;
 }
 
-.repo-path-container {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
 .repo-path {
+    margin: 8px 0;
     font-size: 12px;
     color: gray;
-    flex-grow: 1;
     
     word-break: break-word;
-    flex: 1 1 auto;
     min-width: 0;
 }
 
@@ -63,18 +98,27 @@ button {
     background-image: url("../ui/buttons/delete-btn.png");
     image-rendering: pixelated;
     
-    transition: transform 0.8s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 .repo-delete:hover {
     cursor: pointer;
     transform: scale(1.2);
 }
 
-.times-list {
-    margin-bottom: 10px;
+.time-input-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 12px;
 }
-.times-list input[type="number"] {
-    width: 60px;
+
+.time-input {
+    border: none;
+    border-radius: 4px;
+    background-color: #e9dfea;
+    padding: 4px;
+    text-align: center;
 }
 
 .titlebar {

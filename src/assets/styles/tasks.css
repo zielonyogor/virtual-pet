@@ -39,4 +39,13 @@ body {
 
 .task-table button:hover {
     cursor: pointer;
+    background-color: #e9dfea;
+}
+.task-table button:active {
+    background-color: #9b80ab;
+}
+
+
+.task-table button:hover {
+    cursor: pointer;
 }

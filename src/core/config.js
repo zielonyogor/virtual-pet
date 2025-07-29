@@ -28,11 +28,11 @@ function updateRepoList(repos) {
     repoElem.classList.add("repo-element");
     repoElem.innerHTML = 
     `
+      <div class="repo-path-container">
         <p class="repo-main-title">${repo.split("\\").pop()}</p>
-        <div class="repo-path-container">
-          <p class="repo-path">${repo}</p>
-          <button class="repo-delete"></button>
-        </div>
+        <p class="repo-path">${repo}</p>
+      </div>
+      <button class="repo-delete"></button>
     `;
     const deleteBtn = repoElem.getElementsByClassName("repo-delete")[0];
     deleteBtn.addEventListener('click', async () => {

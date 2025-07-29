@@ -1,5 +1,5 @@
 body {
-    -webkit-app-region: drag;
+    /* -webkit-app-region: drag; */
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -17,6 +17,10 @@ button {
 
 button:hover {
     cursor: pointer;
+    background-color: #e9dfea;
+}
+button:active {
+    background-color: #9b80ab;
 }
 
 .timer-window {
