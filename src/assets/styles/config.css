@@ -120,6 +120,11 @@ section button:active {
     padding: 4px;
     text-align: center;
 }
+.time-input::-webkit-outer-spin-button,
+.time-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 .titlebar {
     background-image: url('../ui/windows/titlebar-config.png');

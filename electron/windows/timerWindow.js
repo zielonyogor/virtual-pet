@@ -12,6 +12,7 @@ function createTimerWindow() {
         hasShadow: false,
         resizable: false,
         maximizable: false,
+        icon: path.join(__dirname, '../../src/assets', 'icon.ico'),
         webPreferences: {
             preload: path.join(__dirname, '../../src/preload.js'),
             contextIsolation: true,
@@ -21,10 +22,9 @@ function createTimerWindow() {
     
     if(!app.isPackaged)
         timerWin.webContents.openDevTools({ mode: 'detach' });
-    
-    timerWin.setSkipTaskbar(true);
 
     timerWin.loadFile('./src/timer.html');
+    timerWin.setTitle('virtual-pet timer');
 
     return timerWin;
 }

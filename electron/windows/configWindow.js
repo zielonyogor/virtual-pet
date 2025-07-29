@@ -1,7 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
-function createConfigWindow(bounds) {
+function createConfigWindow() {
+    console.log(path.join(__dirname, '../../src/assets', 'icon.ico'));
     let configWin = new BrowserWindow({
         width: 500,
         height: 500,
@@ -9,7 +10,7 @@ function createConfigWindow(bounds) {
         frame: false,
         transparent: true,
         maximizable: false,
-        useContentSize: true,
+        icon: path.join(__dirname, '../../src/assets', 'icon.ico'),
         webPreferences: {
             preload: path.join(__dirname, '../../src/preload.js'),
             contextIsolation: true,
@@ -21,6 +22,7 @@ function createConfigWindow(bounds) {
         configWin.webContents.openDevTools({ mode: 'detach' });
 
     configWin.loadFile('./src/config.html');
+    configWin.setTitle('virtual-pet config');
 
     return configWin;
 }

@@ -5,6 +5,8 @@ let timerValueElem = null;
 let countdownInterval = null;
 let remainingSeconds = 0;
 
+let startBtn;
+
 function setup() {
     setupTitle();
 
@@ -13,9 +15,17 @@ function setup() {
         timeBtn.addEventListener('click', () => setTime(parseInt(timeBtn.value)));
     });
 
+    window.api.getTimes().then((times) => {
+        console.log(`Times: `, times);
+        for(let i = 0; i < times.length; i++) {
+            timeBtns[i].value = times[i];
+            timeBtns[i].textContent = `${times[i]}:00`;
+        }
+    })
+
     timerValueElem = document.getElementById("time-value");
 
-    const startBtn = document.getElementById("start-btn");
+    startBtn = document.getElementById("start-btn");
     startBtn.addEventListener('click', toggleTimer);
 }
 
@@ -29,9 +39,13 @@ function toggleTimer() {
     if (isRunning) {
         clearInterval(countdownInterval);
         isRunning = false;
+        startBtn.textContent = 'start';
+        startBtn.classList.remove('start-btn-active')
     } else {
         countdownInterval = setInterval(updateTime, 1000);
         isRunning = true;
+        startBtn.textContent = 'stop';
+        startBtn.classList.add('start-btn-active')
     }
 }
 

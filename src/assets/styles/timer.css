@@ -1,5 +1,4 @@
 body {
-    /* -webkit-app-region: drag; */
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -53,6 +52,9 @@ button:active {
     border-image: url('../ui/buttons/timer-start-btn.png') 4 stretch;
     text-align: center;
 }
+.start-btn-active {
+    background-color: #9b80ab;
+}
 
 #time-value {
     margin: 0;
@@ -62,6 +64,7 @@ button:active {
 
 .time-btn {
     padding: 0;
+    width: 48px;
     
     background-color: #f9f4fd;
     border-radius: 8px;
