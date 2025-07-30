@@ -1,8 +1,9 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, screen } = require('electron');
 const path = require('path');
 
 function createMainWindow() {
-    win = new BrowserWindow({
+    const screenProps = screen.getPrimaryDisplay();
+    const win = new BrowserWindow({
         width: 194,
         height: 160,
         transparent: true,
@@ -16,7 +17,7 @@ function createMainWindow() {
             nodeIntegration: false,
         },
         x: 0,
-        y: 0,
+        y: screenProps.workArea.height,
     });
     
     if(!app.isPackaged)

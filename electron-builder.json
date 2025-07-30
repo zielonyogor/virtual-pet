@@ -1,7 +1,15 @@
 {
-    "appId": "com.zielonyogor.pet",
+    "appId": "com.zielonyogor.virtual-pet",
+    "productName": "virtual-pet",
     "win": {
-        "target": "portable",
+        "target": "nsis",
         "icon": "./src/assets/icon.ico"
+    },
+    "nsis": {
+        "oneClick": false,
+        "allowToChangeInstallationDirectory": true,
+        "createDesktopShortcut": true,
+        "createStartMenuShortcut": true,
+        "shortcutName": "virtual-pet"
     }
 }

@@ -16,10 +16,6 @@ button {
 
 button:hover {
     cursor: pointer;
-    background-color: #e9dfea;
-}
-button:active {
-    background-color: #9b80ab;
 }
 
 .timer-window {
@@ -46,10 +42,9 @@ button:active {
     font-size: 24px;
 
     background-color: #eaaad4;
-    
     border-radius: 8px;
     border: 4px solid transparent;
-    border-image: url('../ui/buttons/timer-start-btn.png') 4 stretch;
+    border-image: url('../ui/buttons/button.png') 4 stretch;
     text-align: center;
 }
 .start-btn-active {
@@ -70,6 +65,18 @@ button:active {
     border-radius: 8px;
     border: 8px solid transparent;
     border-image: url('../ui/buttons/button.png') 8 stretch;
+}
+.time-btn:hover {
+    background-color: #e9dfea;
+}
+.time-btn:active {
+    background-color: #9b80ab;
+}
+.time-btn:disabled {
+    background-color: #e9dfea;
+    border-image: none;
+    border-color: #e9dfea;
+    cursor: default;
 }
 
 .titlebar {

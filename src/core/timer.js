@@ -1,29 +1,33 @@
 import { setupTitle } from "../ui/titleBar.js";
 
 let isRunning = false;
-let timerValueElem = null;
 let countdownInterval = null;
 let remainingSeconds = 0;
 
-let startBtn;
+let timerValueElem = null;
+let startBtn = null;
+let timeBtns = [];
 
 function setup() {
     setupTitle();
 
-    const timeBtns = Array.from(document.getElementsByClassName("time-btn"));
+    timeBtns = Array.from(document.getElementsByClassName("time-btn"));
     timeBtns.forEach(timeBtn => {
         timeBtn.addEventListener('click', () => setTime(parseInt(timeBtn.value)));
     });
+    
+    timerValueElem = document.getElementById("time-value");
 
     window.api.getTimes().then((times) => {
-        console.log(`Times: `, times);
+        const defaultTime = times.length === 0 ? 5 : times[0];
+        timerValueElem.textContent = `${pad(defaultTime)}:00`;  
+        remainingSeconds = defaultTime * 60;  
+
         for(let i = 0; i < times.length; i++) {
             timeBtns[i].value = times[i];
-            timeBtns[i].textContent = `${times[i]}:00`;
+            timeBtns[i].textContent = `${pad(times[i])}:00`;
         }
     })
-
-    timerValueElem = document.getElementById("time-value");
 
     startBtn = document.getElementById("start-btn");
     startBtn.addEventListener('click', toggleTimer);
@@ -40,13 +44,16 @@ function toggleTimer() {
         clearInterval(countdownInterval);
         isRunning = false;
         startBtn.textContent = 'start';
-        startBtn.classList.remove('start-btn-active')
+        startBtn.classList.remove('start-btn-active');
     } else {
         countdownInterval = setInterval(updateTime, 1000);
         isRunning = true;
         startBtn.textContent = 'stop';
-        startBtn.classList.add('start-btn-active')
+        startBtn.classList.add('start-btn-active');
     }
+    timeBtns.forEach(timeBtn => {
+        timeBtn.disabled = isRunning;
+    });
 }
 
 function updateTime() {
